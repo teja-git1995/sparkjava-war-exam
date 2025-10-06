@@ -2,7 +2,6 @@ pipeline {
 	agent any 
 	environment {
 		IMAGE = 'teja/firstimage:1.0'
-		GITURL = 'https://github.com/teja-git1995/sparkjava-war-exam.git'
 	}
 	
 	tools {
@@ -10,12 +9,6 @@ pipeline {
 	}
 
 	stages{
-		stage('checkout') {
-			steps {
-			  git branch: 'main', url: "${GITURL}"
-			}
-		}
-		
 		stage('maven build') {
 			steps { 
 			    sh ' mvn clean package -DskipTests'
