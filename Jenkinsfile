@@ -1,7 +1,7 @@
 pipeline {
 	agent any 
 	environment {
-		IMAGE = 'teja/firstimage:1.0'
+		IMAGE = 'teja072/teja:latest'
 	}
 	
 	tools {
