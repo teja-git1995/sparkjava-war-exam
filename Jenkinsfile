@@ -2,7 +2,8 @@ pipeline {
 	agent any 
 	environment {
 		IMAGE = 'teja072/teja:latest'
-		CONTAIN = 'helloworld'
+		DEV = 'dev_helloworld'
+		PRDO = 'prod_hello'
 	}
 	
 	tools {
@@ -34,9 +35,23 @@ pipeline {
 			
 			}
 		}
+		
 		stage('Docker deploy') {
 			steps {
-				sh 'docker run -itd -p 8081:8080 --name ${CONTAIN} ${IMAGE}'
+				sh 'docker run -itd -p 8081:8080 --name ${DEV} ${IMAGE}'
+			}
+		}
+		stage('Deploy to Production') {
+            steps {
+                script {
+                    input message: 'Do you want to deploy to production?', ok: 'Deploy'
+                }
+                echo 'Deployment started...'
+            }
+        }
+		stage('Docker deploy') {
+			steps {
+				sh 'docker run -itd -p 8081:8080 --name ${PROD} ${IMAGE}'
 			}
 		}
 		}
