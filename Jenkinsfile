@@ -3,7 +3,7 @@ pipeline {
 	environment {
 		IMAGE = 'teja072/teja:latest'
 		DEV = 'dev_helloworld'
-		PRDO = 'prod_hello'
+		PROD = 'prod_hello'
 	}
 	
 	tools {
