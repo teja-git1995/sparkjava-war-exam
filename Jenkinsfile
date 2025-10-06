@@ -51,7 +51,7 @@ pipeline {
         }
 		stage('Docker Prod deploy') {
 			steps {
-				sh 'docker run -itd -p 8081:8080 --name ${PROD} ${IMAGE}'
+				sh 'docker run -itd -p 8082:8080 --name ${PROD} ${IMAGE}'
 			}
 		}
 		}
