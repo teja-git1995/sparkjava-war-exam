@@ -5,7 +5,7 @@ pipeline {
 	}
 	
 	tools {
-		maven mymvn
+		maven 'mymvn'
 	}
 
 	stages{
