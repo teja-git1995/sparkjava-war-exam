@@ -2,6 +2,7 @@ pipeline {
 	agent any 
 	environment {
 		IMAGE = 'teja072/teja:latest'
+		CONTAIN = 'helloworld'
 	}
 	
 	tools {
@@ -17,7 +18,7 @@ pipeline {
 		
 		stage('Docker build') {
 			steps {
-			    sh ' docker bulid -t ${IMAGE} .'
+			    sh 'docker build -t ${IMAGE} .'
 			}
 		}
 		
@@ -33,5 +34,10 @@ pipeline {
 			
 			}
 		}
+		stage('Docker deploy') {
+			steps {
+				sh 'docker run -itd -p 8081:8080 --name ${CONTAIN} ${IMAGE}'
+			}
+		}
+		}
 	}
-}
