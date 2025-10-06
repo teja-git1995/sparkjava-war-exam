@@ -36,12 +36,12 @@ pipeline {
 			}
 		}
 		
-		stage('Docker deploy') {
+		stage('Docker Dev deploy') {
 			steps {
 				sh 'docker run -itd -p 8081:8080 --name ${DEV} ${IMAGE}'
 			}
 		}
-		stage('Deploy to Production') {
+		stage('Approval Deploy to Production') {
             steps {
                 script {
                     input message: 'Do you want to deploy to production?', ok: 'Deploy'
@@ -49,7 +49,7 @@ pipeline {
                 echo 'Deployment started...'
             }
         }
-		stage('Docker deploy') {
+		stage('Docker Prod deploy') {
 			steps {
 				sh 'docker run -itd -p 8081:8080 --name ${PROD} ${IMAGE}'
 			}
